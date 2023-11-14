@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<style>
+.container{
+    margin-top: 2rem;
+    border: 1px;
+    border-radius: 0.5rem;
+    width: 25%;
+    background-color: rgb(191, 189, 189,);
+    box-shadow: 0 0 1rem;
+}
+.row1{
+    display: flex;
+    gap: 0.3rem;
+    justify-content: space-between;
+}
+.CalBtn{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap:3px;
+}
+button{
+    padding: 0.3rem;
+    border-radius: 0px;
+    font-size: 10px;
+}
+#result-display{
+    text-align: end;
+    margin-left: 80%;
+    direction: ltr;
+}
+input{
+    width: 100%;
+    background-color: rgba(191, 189, 189, 0.034);
+     border: none;
+     font-size: 1rem;
+     font-weight: 500;
+     text-align: end;
+}
+.header{
+    margin-top: 0.1rem;
+    font-weight: 350;
+    font-size: small;
+    justify-content: space-between;
+}
+.icons{
+    word-spacing: 2rem;
+}
+.standard{
+justify-content: space-between;
+}
+h5{
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 650;
+    font-size: large;
+}
+.btn-tertiary{
+    border: none;
+    background-color: rgba(191, 189, 189, 0.029);
+}
+.btn-tertiary:hover{
+    background-color: rgba(191, 189, 189, 0.526);
+}
+#show{
+    background-color: rgb(110, 110, 235);
+    border-radius: 0.2rem;
+}
+#show:hover{
+    background-color: rgba(0, 110, 255, 0.711);
+}
+.standard-div{
+    gap: 1em;
+}
+.bi-x-lg:hover{
+    background-color: #ff0000;
+}
+.bi-dash:hover, .bi-app:hover{
+    background-color: rgba(191, 189, 189, 0.526);
+    width: 50px;
+}
+</style>
+<body>
+  <div id="whole-body" class="container background-color-light">
+    <div class="header d-flex">
+        <p>Calculator</p>
+        <div class="icons">
+            <i class="bi bi-dash" onclick="minimize ()" ></i>
+            <i class="bi bi-app" onclick="maximize()"></i>
+            <i class="bi bi-x-lg" onclick="cancel()"></i>
+        </div>
+    </div>
+    <div id="cover">
+        <div class="standard d-flex">
+            <div class="standard-div d-flex">
+                <i class="bi bi-list"></i>
+                <h5>Standard</h5>
+            </div>
+            <i class="bi bi-box-arrow-in-up-right"></i>
+            <i class="bi bi-clock-history"></i>
+        </div>
+        <p id="result-display"></p>
+        <input type="text" id="calculator">
+        <div class="row1">
+        <button class="btn-tertiary" onclick="display()">MC</button>
+        <button class="btn-tertiary" onclick="display()">MR</button>
+        <button class="btn-tertiary" onclick="display()">M+</button>
+        <button class="btn-tertiary" onclick="display()">M-</button>
+        <button class="btn-tertiary" onclick="display()">MS</button>
+        <button class="btn-tertiary" onclick="display()">M</button>
+        </div>
+        <div class="CalBtn">
+            <button class="btn btn-tertiary" onclick="display('%')">%</button>
+            <button class="btn btn-tertiary" onclick="display('√')">√</button>
+            <button class="btn btn-tertiary" onclick="display()"> x²</button>
+            <button class="btn btn-tertiary" onclick=display()>1/x</button>
+            <button class="btn btn-tertiary" onclick="display('CE')">CE</button>
+            <button class="btn btn-tertiary" onclick="clearDisplay ('C')">C</button>
+            <button class="btn btn-tertiary" onclick=deleteButton()>⌫</button>
+            <button class="btn btn-tertiary sign" onclick="operators('÷')">÷</button>
+            <button class="btn btn-light" onclick=display(7)><strong>7</strong></button>
+            <button class="btn btn-light" onclick=display(8)><strong>8</strong></button>
+            <button class="btn btn-light" onclick=display(9)><strong>9</strong></button>
+            <button class="btn btn-tertiary sign" onclick="operators('×')">×</button>
+            <button class="btn btn-light" onclick=display(4)><strong>4</strong></button>
+            <button class="btn btn-light" onclick=display(5)><strong>5</strong></button>
+            <button class="btn btn-light" onclick=display(6)><strong>6</strong></button>
+            <button class="btn btn-tertiary sign" onclick="operators('-')">-</button>
+            <button class="btn btn-light" onclick=display(1)><strong>1</strong></button>
+            <button class="btn btn-light" onclick=display(2)><strong>2</strong></button>
+            <button class="btn btn-light" onclick=display(3)><strong>3</strong></button>
+            <button class="btn btn-tertiary sign" onclick="operators('+')">+</button>
+            <button class="btn btn-tertiary" onclick="display('±')">±</button>
+            <button class="btn btn-light" onclick=display(0)><strong>0</strong></button>
+            <button class="btn btn-tertiary" onclick="display('.')">.</button>
+            <button id="show" class="btn btn-tertiary sign" onclick=resultDisplay()>=</button>
+        </div>
+    </div>
+  </div> 
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> 
+
+
+<script>
+let calculatorscreen=document.getElementById('calculator')
+let resultscreen=document.getElementById('result-display')
+let firstVal,digit,lastVal='';
+    let calClear=false
+
+    function display(numbers){
+        if (calClear) {
+            calculatorscreen.value=''
+            calClear=false
+        }
+        calculatorscreen.value += numbers
+    }
+
+    function operators(sign){
+       if (digit) {
+        resultDisplay()
+       }
+        digit=sign
+        firstVal=calculatorscreen.value
+        calClear=true
+        resultscreen.innerHTML = calculatorscreen.value + sign
+
+        }
+        function resultDisplay(equalTo){
+        lastVal=calculatorscreen.value
+        if (digit=='+') {
+            calculatorscreen.value = Number(firstVal) + Number(calculatorscreen.value)
+        }
+        if (digit=='÷') {
+            calculatorscreen.value = Number(firstVal) / Number(calculatorscreen.value)
+        }
+        if (digit=='-') {
+            calculatorscreen.value = Number(firstVal) - Number(calculatorscreen.value)
+        }
+        if (digit=='×') {
+            calculatorscreen.value = Number(firstVal) * Number(calculatorscreen.value)
+        }
+        resultscreen.innerHTML = firstVal + digit + lastVal + '=' 
+    }
+    function clearDisplay() {
+        displayValue = '';
+        calculatorscreen.value = displayValue;
+        resultscreen.innerHTML=displayValue;
+    }
+    function deleteButton() {
+        calculatorscreen.value = calculatorscreen.value.slice(0,-1)
+    }
+    function minimize(){
+    cover.style.display='none'
+}
+function maximize(){
+    let cover=document.getElementById('cover')
+    cover.style.display='block'
+   }
+   function cancel(){
+    let wholeBody=document.getElementById('whole-body')
+    wholeBody.style.display='none'
+
+   }
+</script>
